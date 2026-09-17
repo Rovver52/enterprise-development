@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="CarWash.Domain/CarWash.Domain.csproj" />
-  <Project Path="CarWash.Tests/CarWash.Tests.csproj" />
-</Solution>
