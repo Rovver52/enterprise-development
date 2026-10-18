@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../CarWash.Domain/CarWash.Domain.csproj" />
+    <ProjectReference Include="../CarWash.Contracts/CarWash.Contracts.csproj" />
+  </ItemGroup>
+</Project>

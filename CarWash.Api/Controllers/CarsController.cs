@@ -1,87 +1,71 @@
-using CarWash.Api.Requests;
-using CarWash.Domain.Models;
-using CarWash.Domain.Repositories;
+using CarWash.Application.Services;
+using CarWash.Contracts.Requests;
+using CarWash.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarWash.Api.Controllers;
 
 /// <summary>
-/// CRUD-операции с автомобилями
+/// Операции с автомобилями
 /// </summary>
 [ApiController]
 [Route("api/cars")]
-public class CarsController(
-    ICarRepository carRepository,
-    ICustomerRepository customerRepository,
-    IOrderRepository orderRepository) : ControllerBase
+public class CarsController(CarService service) : ControllerBase
 {
     /// <summary>
-    /// Получить все автомобили
+    /// Получить список
     /// </summary>
     [HttpGet]
-    public ActionResult<IReadOnlyList<Car>> GetAll() =>
-        Ok(carRepository.GetAll());
+    public ActionResult<IReadOnlyList<CarResponse>> GetAll() => Ok(service.GetAll());
 
     /// <summary>
     /// Получить автомобиль по идентификатору
     /// </summary>
     [HttpGet("{id:int}")]
-    public ActionResult<Car> GetById(int id)
-    {
-        var car = carRepository.GetById(id);
-        return car is null ? NotFound() : Ok(car);
-    }
+    public ActionResult<CarResponse> GetById(int id) => Ok(service.GetById(id));
 
     /// <summary>
     /// Создать автомобиль
     /// </summary>
     [HttpPost]
-    public ActionResult<Car> Create(CarRequest request)
+    [ProducesResponseType<CarResponse>(StatusCodes.Status201Created)]
+    public ActionResult<CarResponse> Create(CarRequest request)
     {
-        var car = new Car
-        {
-            Id = carRepository.GetAll().Select(item => item.Id).DefaultIfEmpty().Max() + 1,
-            LicensePlate = request.LicensePlate,
-            Brand = request.Brand
-        };
-
-        carRepository.Add(car);
-        return CreatedAtAction(nameof(GetById), new { id = car.Id }, car);
+        var response = service.Create(request);
+        return CreatedAtAction(nameof(GetById), new { id = response.Id }, response);
     }
 
     /// <summary>
     /// Изменить автомобиль
     /// </summary>
     [HttpPut("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Update(int id, CarRequest request)
     {
-        var car = carRepository.GetById(id);
-        if (car is null)
-            return NotFound();
-
-        // Меняем существующий объект: на него ссылаются клиенты и заказы.
-        car.LicensePlate = request.LicensePlate;
-        car.Brand = request.Brand;
-        carRepository.Update(car);
+        service.Update(id, request);
         return NoContent();
     }
 
     /// <summary>
-    /// Удалить автомобиль, если он не используется в заказах
+    /// Удалить автомобиль
     /// </summary>
     [HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Delete(int id)
     {
-        if (carRepository.GetById(id) is null)
-            return NotFound();
-
-        if (orderRepository.GetAll().Any(order => order.Car.Id == id))
-            return Conflict(new { message = "Автомобиль используется в заказах." });
-
-        foreach (var customer in customerRepository.GetAll())
-            customer.Cars.RemoveAll(car => car.Id == id);
-
-        carRepository.Delete(id);
+        service.Delete(id);
         return NoContent();
     }
+
+    /// <summary>
+    /// Получить клиентов автомобиля
+    /// </summary>
+    [HttpGet("{id:int}/customers")]
+    public ActionResult<IReadOnlyList<CustomerResponse>> GetCustomers(int id) => Ok(service.GetCustomers(id));
+
+    /// <summary>
+    /// Получить заказы автомобиля
+    /// </summary>
+    [HttpGet("{id:int}/orders")]
+    public ActionResult<IReadOnlyList<OrderResponse>> GetOrders(int id) => Ok(service.GetOrders(id));
 }

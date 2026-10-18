@@ -3,7 +3,7 @@ namespace CarWash.Domain.Models;
 /// <summary>
 /// Клиент автомойки
 /// </summary>
-public class Customer
+public class Customer : IEntity
 {
     /// <summary>
     /// Идентификатор клиента

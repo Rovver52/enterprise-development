@@ -1,96 +1,65 @@
-using CarWash.Api.Requests;
-using CarWash.Domain.Models;
-using CarWash.Domain.Repositories;
+using CarWash.Application.Services;
+using CarWash.Contracts.Requests;
+using CarWash.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarWash.Api.Controllers;
 
 /// <summary>
-/// CRUD-операции с услугами автомойки
+/// Операции с услугами
 /// </summary>
 [ApiController]
 [Route("api/wash-services")]
-public class WashServicesController(
-    IWashServiceRepository washServiceRepository,
-    IOrderRepository orderRepository) : ControllerBase
+public class WashServicesController(WashServiceService service) : ControllerBase
 {
     /// <summary>
-    /// Получить все услуги
+    /// Получить список
     /// </summary>
     [HttpGet]
-    public ActionResult<IReadOnlyList<WashService>> GetAll() =>
-        Ok(washServiceRepository.GetAll());
+    public ActionResult<IReadOnlyList<WashServiceResponse>> GetAll() => Ok(service.GetAll());
 
     /// <summary>
     /// Получить услугу по идентификатору
     /// </summary>
     [HttpGet("{id:int}")]
-    public ActionResult<WashService> GetById(int id)
-    {
-        var washService = washServiceRepository.GetById(id);
-        return washService is null ? NotFound() : Ok(washService);
-    }
+    public ActionResult<WashServiceResponse> GetById(int id) => Ok(service.GetById(id));
 
     /// <summary>
     /// Создать услугу
     /// </summary>
     [HttpPost]
-    public ActionResult<WashService> Create(WashServiceRequest request)
+    [ProducesResponseType<WashServiceResponse>(StatusCodes.Status201Created)]
+    public ActionResult<WashServiceResponse> Create(WashServiceRequest request)
     {
-        var washService = new WashService
-        {
-            Id = washServiceRepository.GetAll().Select(item => item.Id).DefaultIfEmpty().Max() + 1,
-            Name = request.Name,
-            Category = request.Category,
-            Cost = request.Cost,
-            DurationMinutes = request.DurationMinutes
-        };
-
-        washServiceRepository.Add(washService);
-        return CreatedAtAction(nameof(GetById), new { id = washService.Id }, washService);
+        var response = service.Create(request);
+        return CreatedAtAction(nameof(GetById), new { id = response.Id }, response);
     }
 
     /// <summary>
     /// Изменить услугу
     /// </summary>
     [HttpPut("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Update(int id, WashServiceRequest request)
     {
-        var washService = washServiceRepository.GetById(id);
-        if (washService is null)
-            return NotFound();
-
-        try
-        {
-            foreach (var order in orderRepository.GetAll().Where(order => order.WashService.Id == id))
-                _ = order.StartTime.AddMinutes(request.DurationMinutes);
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            return BadRequest(new { message = "Дата окончания заказа выходит за допустимый диапазон." });
-        }
-
-        washService.Name = request.Name;
-        washService.Category = request.Category;
-        washService.Cost = request.Cost;
-        washService.DurationMinutes = request.DurationMinutes;
-        washServiceRepository.Update(washService);
+        service.Update(id, request);
         return NoContent();
     }
 
     /// <summary>
-    /// Удалить услугу, если она не используется в заказах
+    /// Удалить услугу
     /// </summary>
     [HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     public IActionResult Delete(int id)
     {
-        if (washServiceRepository.GetById(id) is null)
-            return NotFound();
-
-        if (orderRepository.GetAll().Any(order => order.WashService.Id == id))
-            return Conflict(new { message = "Услуга используется в заказах." });
-
-        washServiceRepository.Delete(id);
+        service.Delete(id);
         return NoContent();
     }
+
+    /// <summary>
+    /// Получить заказы с услугой
+    /// </summary>
+    [HttpGet("{id:int}/orders")]
+    public ActionResult<IReadOnlyList<OrderResponse>> GetOrders(int id) => Ok(service.GetOrders(id));
 }

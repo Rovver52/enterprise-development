@@ -1,49 +1,35 @@
+using CarWash.Domain.Data;
 using CarWash.Domain.Models;
 using CarWash.Domain.Repositories;
 
 namespace CarWash.Infrastructure.Repositories;
 
 /// <summary>
-/// Репозиторий услуг автомойки в памяти
+/// Репозиторий услуг и их аналитики в памяти
 /// </summary>
-public class InMemoryWashServiceRepository(List<WashService> washServices)
-    : IWashServiceRepository
+public class InMemoryWashServiceRepository(CarWashData data, IOrderRepository orderRepository)
+    : InMemoryRepository<WashService>(data.WashServices), IWashServiceRepository
 {
-    /// <summary>
-    /// Получить все услуги автомойки
-    /// </summary>
-    public IReadOnlyList<WashService> GetAll() =>
-        washServices.AsReadOnly();
-
-    /// <summary>
-    /// Получить услугу автомойки по идентификатору
-    /// </summary>
-    public WashService? GetById(int id) =>
-        washServices.FirstOrDefault(washService =>
-            washService.Id == id);
-
-    /// <summary>
-    /// Добавить услугу автомойки
-    /// </summary>
-    public void Add(WashService washService) =>
-        washServices.Add(washService);
-
-    /// <summary>
-    /// Обновить услугу автомойки
-    /// </summary>
-    public void Update(WashService washService)
+    /// <inheritdoc />
+    public IReadOnlyList<(WashService WashService, int OrderCount)> GetTop5PopularServices()
     {
-        var index = washServices.FindIndex(
-            item => item.Id == washService.Id);
-
-        if (index >= 0)
-            washServices[index] = washService;
+        var counts = orderRepository.GetAll()
+            .GroupBy(order => order.WashService.Id)
+            .ToDictionary(group => group.Key, group => group.Count());
+        return Items.Values
+            .Select(service => (WashService: service, OrderCount: counts.GetValueOrDefault(service.Id)))
+            .OrderByDescending(item => item.OrderCount).ThenBy(item => item.WashService.Id)
+            .Take(5).ToList();
     }
 
-    /// <summary>
-    /// Удалить услугу автомойки
-    /// </summary>
-    public void Delete(int id) =>
-        washServices.RemoveAll(washService =>
-            washService.Id == id);
+    /// <inheritdoc />
+    public IReadOnlyList<(WashService WashService, decimal Revenue)> GetRevenuePerService()
+    {
+        var revenue = orderRepository.GetAll()
+            .GroupBy(order => order.WashService.Id)
+            .ToDictionary(group => group.Key, group => group.Sum(order => order.WashService.Cost));
+        return Items.Values.OrderBy(service => service.Id)
+            .Select(service => (WashService: service, Revenue: revenue.GetValueOrDefault(service.Id)))
+            .ToList();
+    }
 }

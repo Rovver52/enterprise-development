@@ -3,7 +3,7 @@ namespace CarWash.Domain.Models;
 /// <summary>
 /// Заказ на обслуживание автомобиля
 /// </summary>
-public class Order
+public class Order : IEntity
 {
     /// <summary>
     /// Идентификатор заказа

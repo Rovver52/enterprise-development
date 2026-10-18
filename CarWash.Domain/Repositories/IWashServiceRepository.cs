@@ -5,30 +5,15 @@ namespace CarWash.Domain.Repositories;
 /// <summary>
 /// Репозиторий услуг автомойки
 /// </summary>
-public interface IWashServiceRepository
+public interface IWashServiceRepository : IRepository<WashService>
 {
     /// <summary>
-    /// Получить все услуги
+    /// Получить пять наиболее популярных услуг
     /// </summary>
-    IReadOnlyList<WashService> GetAll();
+    IReadOnlyList<(WashService WashService, int OrderCount)> GetTop5PopularServices();
 
     /// <summary>
-    /// Получить услугу по идентификатору
+    /// Получить общую выручку по каждой услуге
     /// </summary>
-    WashService? GetById(int id);
-
-    /// <summary>
-    /// Добавить услугу
-    /// </summary>
-    void Add(WashService washService);
-
-    /// <summary>
-    /// Обновить услугу
-    /// </summary>
-    void Update(WashService washService);
-
-    /// <summary>
-    /// Удалить услугу
-    /// </summary>
-    void Delete(int id);
+    IReadOnlyList<(WashService WashService, decimal Revenue)> GetRevenuePerService();
 }

@@ -15,7 +15,7 @@ public class CarWashTests(CarWashFixture fixture)
     public void GetTop5CustomersByVisits()
     {
         var result =
-            fixture.CustomerAnalyticsService.GetTop5CustomersByVisits();
+            fixture.CustomerRepository.GetTop5CustomersByVisits();
 
         var actual = result
             .Select(item => item.Customer.Id)
@@ -23,11 +23,11 @@ public class CarWashTests(CarWashFixture fixture)
 
         var expected = new[]
         {
-            fixture.Customer1.Id,
-            fixture.Customer2.Id,
-            fixture.Customer3.Id,
-            fixture.Customer4.Id,
-            fixture.Customer5.Id
+            fixture.Data.Customers[0].Id,
+            fixture.Data.Customers[1].Id,
+            fixture.Data.Customers[2].Id,
+            fixture.Data.Customers[3].Id,
+            fixture.Data.Customers[4].Id
         };
 
         Assert.Equal(expected, actual);
@@ -40,13 +40,13 @@ public class CarWashTests(CarWashFixture fixture)
     public void GetCarsCurrentlyAtWash()
     {
         var result =
-            fixture.OrderAnalyticsService.GetCarsCurrentlyAtWash();
+            fixture.OrderRepository.GetCarsCurrentlyAtWash();
 
         Assert.Single(result);
 
         Assert.Contains(
             result,
-            car => car.Id == fixture.Car1.Id);
+            car => car.Id == fixture.Data.Cars[0].Id);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class CarWashTests(CarWashFixture fixture)
     public void GetTop5PopularServices()
     {
         var result =
-            fixture.WashServiceAnalyticsService.GetTop5PopularServices();
+            fixture.WashServiceRepository.GetTop5PopularServices();
 
         var actual = result
             .Select(item => item.WashService.Id)
@@ -81,9 +81,9 @@ public class CarWashTests(CarWashFixture fixture)
     public void GetBoxAvailableFrom()
     {
         var result =
-            fixture.OrderAnalyticsService.GetBoxAvailableFrom(1);
+            fixture.OrderRepository.GetBoxAvailableFrom(1);
 
-        Assert.Equal(fixture.CurrentOrder.EndTime, result);
+        Assert.Equal(fixture.Data.Orders[15].EndTime, result);
     }
 
     /// <summary>
@@ -93,12 +93,12 @@ public class CarWashTests(CarWashFixture fixture)
     public void GetRevenuePerService()
     {
         var result =
-            fixture.WashServiceAnalyticsService.GetRevenuePerService();
+            fixture.WashServiceRepository.GetRevenuePerService();
 
         Assert.Contains(
             result,
             item =>
-                item.WashService.Id == fixture.WashService1.Id &&
+                item.WashService.Id == fixture.Data.WashServices[0].Id &&
                 item.Revenue == 3000m);
     }
 }

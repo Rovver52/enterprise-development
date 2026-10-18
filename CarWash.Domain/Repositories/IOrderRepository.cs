@@ -5,30 +5,45 @@ namespace CarWash.Domain.Repositories;
 /// <summary>
 /// Репозиторий заказов
 /// </summary>
-public interface IOrderRepository
+public interface IOrderRepository : IRepository<Order>
 {
     /// <summary>
-    /// Получить все заказы
+    /// Получить заказы клиента
     /// </summary>
-    IReadOnlyList<Order> GetAll();
+    IReadOnlyList<Order> GetByCustomerId(int customerId);
 
     /// <summary>
-    /// Получить заказ по идентификатору
+    /// Получить заказы автомобиля
     /// </summary>
-    Order? GetById(int id);
+    IReadOnlyList<Order> GetByCarId(int carId);
 
     /// <summary>
-    /// Добавить заказ
+    /// Получить заказы с указанной услугой
     /// </summary>
-    void Add(Order order);
+    IReadOnlyList<Order> GetByWashServiceId(int washServiceId);
 
     /// <summary>
-    /// Обновить заказ
+    /// Получить клиента заказа
     /// </summary>
-    void Update(Order order);
+    Customer? GetCustomer(int orderId);
 
     /// <summary>
-    /// Удалить заказ
+    /// Получить автомобиль заказа
     /// </summary>
-    void Delete(int id);
+    Car? GetCar(int orderId);
+
+    /// <summary>
+    /// Получить услугу заказа
+    /// </summary>
+    WashService? GetWashService(int orderId);
+
+    /// <summary>
+    /// Получить автомобили, которые сейчас находятся на мойке
+    /// </summary>
+    IReadOnlyList<Car> GetCarsCurrentlyAtWash();
+
+    /// <summary>
+    /// Определить время освобождения бокса
+    /// </summary>
+    DateTime GetBoxAvailableFrom(int boxNumber);
 }

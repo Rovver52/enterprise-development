@@ -1,63 +1,45 @@
-using CarWash.Domain.Models;
-using CarWash.Domain.Services;
+using CarWash.Application.Services;
+using CarWash.Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarWash.Api.Controllers;
 
 /// <summary>
-/// Пять аналитических запросов из первой лабораторной работы
+/// Аналитические запросы автомойки
 /// </summary>
 [ApiController]
 [Route("api/analytics")]
-public class AnalyticsController(
-    CustomerAnalyticsService customerAnalyticsService,
-    OrderAnalyticsService orderAnalyticsService,
-    WashServiceAnalyticsService washServiceAnalyticsService) : ControllerBase
+public class AnalyticsController(AnalyticsService service) : ControllerBase
 {
     /// <summary>
     /// Получить пять клиентов с наибольшим количеством посещений
     /// </summary>
     [HttpGet("top-customers")]
-    public IActionResult GetTopCustomers() =>
-        Ok(customerAnalyticsService.GetTop5CustomersByVisits()
-            .Select(item => new { item.Customer, item.VisitCount }));
+    public ActionResult<IReadOnlyList<TopCustomerResponse>> GetTopCustomers() => Ok(service.GetTopCustomers());
 
     /// <summary>
     /// Получить автомобили, которые сейчас находятся на мойке
     /// </summary>
     [HttpGet("current-cars")]
-    public ActionResult<IReadOnlyList<Car>> GetCurrentCars() =>
-        Ok(orderAnalyticsService.GetCarsCurrentlyAtWash());
+    public ActionResult<IReadOnlyList<CarResponse>> GetCurrentCars() => Ok(service.GetCurrentCars());
 
     /// <summary>
     /// Получить пять наиболее популярных услуг
     /// </summary>
     [HttpGet("top-services")]
-    public IActionResult GetTopServices() =>
-        Ok(washServiceAnalyticsService.GetTop5PopularServices()
-            .Select(item => new { item.WashService, item.OrderCount }));
+    public ActionResult<IReadOnlyList<PopularServiceResponse>> GetTopServices() => Ok(service.GetTopServices());
 
     /// <summary>
-    /// Получить время освобождения выбранного бокса
+    /// Получить время освобождения бокса
     /// </summary>
     [HttpGet("boxes/{boxNumber:int}/available-from")]
-    public IActionResult GetBoxAvailableFrom(int boxNumber)
-    {
-        if (boxNumber < 1)
-            return BadRequest(new { message = "Номер бокса должен быть положительным." });
-
-        return Ok(new
-        {
-            BoxNumber = boxNumber,
-            AvailableFrom = orderAnalyticsService.GetBoxAvailableFrom(boxNumber)
-        });
-    }
+    public ActionResult<BoxAvailabilityResponse> GetBoxAvailability(int boxNumber) =>
+        Ok(service.GetBoxAvailability(boxNumber));
 
     /// <summary>
-    /// Получить общую выручку по каждой услуге
+    /// Получить выручку по каждой услуге
     /// </summary>
     [HttpGet("revenue-per-service")]
-    public IActionResult GetRevenuePerService() =>
-        Ok(washServiceAnalyticsService.GetRevenuePerService()
-            .Select(item => new { item.WashService, item.Revenue }));
+    public ActionResult<IReadOnlyList<ServiceRevenueResponse>> GetRevenuePerService() =>
+        Ok(service.GetRevenuePerService());
 }

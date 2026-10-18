@@ -1,47 +1,52 @@
+using CarWash.Domain.Data;
 using CarWash.Domain.Models;
 using CarWash.Domain.Repositories;
 
 namespace CarWash.Infrastructure.Repositories;
 
 /// <summary>
-/// Репозиторий заказов в памяти
+/// Репозиторий заказов и аналитических запросов в памяти
 /// </summary>
-public class InMemoryOrderRepository(List<Order> orders)
-    : IOrderRepository
+public class InMemoryOrderRepository(CarWashData data)
+    : InMemoryRepository<Order>(data.Orders), IOrderRepository
 {
-    /// <summary>
-    /// Получить все заказы
-    /// </summary>
-    public IReadOnlyList<Order> GetAll() =>
-        orders.AsReadOnly();
+    /// <inheritdoc />
+    public IReadOnlyList<Order> GetByCustomerId(int customerId) =>
+        Items.Values.Where(order => order.Customer.Id == customerId)
+            .OrderBy(order => order.Id).ToList();
 
-    /// <summary>
-    /// Получить заказ по идентификатору
-    /// </summary>
-    public Order? GetById(int id) =>
-        orders.FirstOrDefault(order => order.Id == id);
+    /// <inheritdoc />
+    public IReadOnlyList<Order> GetByCarId(int carId) =>
+        Items.Values.Where(order => order.Car.Id == carId)
+            .OrderBy(order => order.Id).ToList();
 
-    /// <summary>
-    /// Добавить заказ
-    /// </summary>
-    public void Add(Order order) =>
-        orders.Add(order);
+    /// <inheritdoc />
+    public IReadOnlyList<Order> GetByWashServiceId(int washServiceId) =>
+        Items.Values.Where(order => order.WashService.Id == washServiceId)
+            .OrderBy(order => order.Id).ToList();
 
-    /// <summary>
-    /// Обновить заказ
-    /// </summary>
-    public void Update(Order order)
+    /// <inheritdoc />
+    public Customer? GetCustomer(int orderId) => GetById(orderId)?.Customer;
+
+    /// <inheritdoc />
+    public Car? GetCar(int orderId) => GetById(orderId)?.Car;
+
+    /// <inheritdoc />
+    public WashService? GetWashService(int orderId) => GetById(orderId)?.WashService;
+
+    /// <inheritdoc />
+    public IReadOnlyList<Car> GetCarsCurrentlyAtWash() =>
+        Items.Values.Where(order => order.IsInProgress)
+            .Select(order => order.Car).DistinctBy(car => car.Id)
+            .OrderBy(car => car.Id).ToList();
+
+    /// <inheritdoc />
+    public DateTime GetBoxAvailableFrom(int boxNumber)
     {
-        var index = orders.FindIndex(
-            item => item.Id == order.Id);
-
-        if (index >= 0)
-            orders[index] = order;
+        var currentOrder = Items.Values
+            .Where(order => order.BoxNumber == boxNumber && order.IsInProgress)
+            .OrderBy(order => order.EndTime)
+            .FirstOrDefault();
+        return currentOrder?.EndTime ?? DateTime.Now;
     }
-
-    /// <summary>
-    /// Удалить заказ
-    /// </summary>
-    public void Delete(int id) =>
-        orders.RemoveAll(order => order.Id == id);
 }

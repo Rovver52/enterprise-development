@@ -5,30 +5,35 @@ namespace CarWash.Domain.Repositories;
 /// <summary>
 /// Репозиторий клиентов
 /// </summary>
-public interface ICustomerRepository
+public interface ICustomerRepository : IRepository<Customer>
 {
     /// <summary>
-    /// Получить всех клиентов
+    /// Получить автомобили клиента
     /// </summary>
-    IReadOnlyList<Customer> GetAll();
+    IReadOnlyList<Car> GetCars(int customerId);
 
     /// <summary>
-    /// Получить клиента по идентификатору
+    /// Получить клиентов, связанных с автомобилем
     /// </summary>
-    Customer? GetById(int id);
+    IReadOnlyList<Customer> GetByCarId(int carId);
 
     /// <summary>
-    /// Добавить клиента
+    /// Связать клиента с существующим автомобилем
     /// </summary>
-    void Add(Customer customer);
+    void AddCar(int customerId, Car car);
 
     /// <summary>
-    /// Обновить клиента
+    /// Удалить связь клиента с автомобилем
     /// </summary>
-    void Update(Customer customer);
+    void RemoveCar(int customerId, int carId);
 
     /// <summary>
-    /// Удалить клиента
+    /// Удалить связи всех клиентов с автомобилем
     /// </summary>
-    void Delete(int id);
+    void RemoveCarFromAll(int carId);
+
+    /// <summary>
+    /// Получить пять клиентов с наибольшим количеством посещений
+    /// </summary>
+    IReadOnlyList<(Customer Customer, int VisitCount)> GetTop5CustomersByVisits();
 }

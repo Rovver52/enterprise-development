@@ -1,41 +1,40 @@
 using System.Text.Json.Serialization;
+using CarWash.Api.Filters;
+using CarWash.Application.Services;
+using CarWash.Domain.Data;
 using CarWash.Domain.Repositories;
-using CarWash.Domain.Services;
 using CarWash.Infrastructure.Repositories;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers()
+builder.Services.AddControllers(options => options.Filters.Add<ApplicationExceptionFilter>())
     .AddJsonOptions(options =>
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+builder.Services.ConfigureHttpJsonOptions(options =>
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+builder.Services.AddOpenApi();
 
-// Один экземпляр каждого репозитория хранит данные между HTTP-запросами.
-builder.Services.AddSingleton<ICarRepository>(_ => new InMemoryCarRepository([]));
-builder.Services.AddSingleton<ICustomerRepository>(_ => new InMemoryCustomerRepository([]));
-builder.Services.AddSingleton<IWashServiceRepository>(_ => new InMemoryWashServiceRepository([]));
-builder.Services.AddSingleton<IOrderRepository>(_ => new InMemoryOrderRepository([]));
+builder.Services.AddSingleton<CarWashData>();
+builder.Services.AddSingleton<ICarRepository, InMemoryCarRepository>();
+builder.Services.AddSingleton<IOrderRepository, InMemoryOrderRepository>();
+builder.Services.AddSingleton<ICustomerRepository, InMemoryCustomerRepository>();
+builder.Services.AddSingleton<IWashServiceRepository, InMemoryWashServiceRepository>();
 
-builder.Services.AddScoped<CustomerAnalyticsService>();
-builder.Services.AddScoped<OrderAnalyticsService>();
-builder.Services.AddScoped<WashServiceAnalyticsService>();
+builder.Services.AddScoped<CarService>();
+builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<WashServiceService>();
+builder.Services.AddScoped<AnalyticsService>();
 
 var app = builder.Build();
 
-// List<T> в репозиториях первой лабы не поддерживает параллельное изменение.
-// Последовательная обработка защищает чтение, запись и сериализацию ответов.
-using var requestLock = new SemaphoreSlim(1, 1);
-app.Use(async (context, next) =>
+if (app.Environment.IsDevelopment())
 {
-    await requestLock.WaitAsync(context.RequestAborted);
-    try
-    {
-        await next(context);
-    }
-    finally
-    {
-        requestLock.Release();
-    }
-});
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+    app.MapGet("/", () => Results.Redirect("/scalar/v1")).ExcludeFromDescription();
+}
 
 app.MapControllers();
 app.Run();

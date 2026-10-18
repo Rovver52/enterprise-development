@@ -3,7 +3,7 @@ namespace CarWash.Domain.Models;
 /// <summary>
 /// Услуга автомойки
 /// </summary>
-public class WashService
+public class WashService : IEntity
 {
     /// <summary>
     /// Идентификатор услуги
