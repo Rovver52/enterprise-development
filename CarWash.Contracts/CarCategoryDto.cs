@@ -1,8 +1,11 @@
+using System.Text.Json.Serialization;
+
 namespace CarWash.Contracts;
 
 /// <summary>
 /// Категория автомобиля
 /// </summary>
+[JsonConverter(typeof(JsonStringEnumConverter<CarCategoryDto>))]
 public enum CarCategoryDto
 {
     /// <summary>

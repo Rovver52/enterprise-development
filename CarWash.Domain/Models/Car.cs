@@ -19,4 +19,9 @@ public class Car : IEntity
     /// Марка автомобиля
     /// </summary>
     public required string Brand { get; set; }
+
+    /// <summary>
+    /// Владелец автомобиля
+    /// </summary>
+    public required Customer Customer { get; set; }
 }

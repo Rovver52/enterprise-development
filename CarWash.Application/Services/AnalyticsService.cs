@@ -1,5 +1,7 @@
+using CarWash.Application.Exceptions;
 using CarWash.Application.Mapping;
 using CarWash.Contracts.Responses;
+using CarWash.Contracts.Services;
 using CarWash.Domain.Repositories;
 
 namespace CarWash.Application.Services;
@@ -10,11 +12,9 @@ namespace CarWash.Application.Services;
 public class AnalyticsService(
     ICustomerRepository customers,
     IOrderRepository orders,
-    IWashServiceRepository services)
+    IWashServiceRepository services) : IAnalyticsService
 {
-    /// <summary>
-    /// Получить пять клиентов с наибольшим количеством посещений
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<TopCustomerResponse> GetTopCustomers() =>
         customers.GetTop5CustomersByVisits().Select(item => new TopCustomerResponse
         {
@@ -23,15 +23,11 @@ public class AnalyticsService(
             VisitCount = item.VisitCount
         }).ToList();
 
-    /// <summary>
-    /// Получить автомобили, которые сейчас находятся на мойке
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<CarResponse> GetCurrentCars() =>
         orders.GetCarsCurrentlyAtWash().Select(car => car.ToResponse()).ToList();
 
-    /// <summary>
-    /// Получить пять наиболее популярных услуг
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<PopularServiceResponse> GetTopServices() =>
         services.GetTop5PopularServices().Select(item => new PopularServiceResponse
         {
@@ -40,13 +36,11 @@ public class AnalyticsService(
             OrderCount = item.OrderCount
         }).ToList();
 
-    /// <summary>
-    /// Получить время освобождения бокса
-    /// </summary>
+    /// <inheritdoc />
     public BoxAvailabilityResponse GetBoxAvailability(int boxNumber)
     {
         if (boxNumber <= 0)
-            throw new ArgumentOutOfRangeException(nameof(boxNumber), "Номер бокса должен быть положительным.");
+            throw new RequestValidationException(nameof(boxNumber), "Номер бокса должен быть положительным.");
         return new BoxAvailabilityResponse
         {
             BoxNumber = boxNumber,
@@ -54,9 +48,7 @@ public class AnalyticsService(
         };
     }
 
-    /// <summary>
-    /// Получить выручку по каждой услуге
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<ServiceRevenueResponse> GetRevenuePerService() =>
         services.GetRevenuePerService().Select(item => new ServiceRevenueResponse
         {

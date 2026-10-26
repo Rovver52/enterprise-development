@@ -1,0 +1,14 @@
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\bin\Release\net10.0\CarWash.Contracts.deps.json
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\bin\Release\net10.0\CarWash.Contracts.dll
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\bin\Release\net10.0\CarWash.Contracts.pdb
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\bin\Release\net10.0\CarWash.Contracts.xml
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.AssemblyInfoInputs.cache
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.AssemblyInfo.cs
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.sourcelink.json
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.dll
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\refint\CarWash.Contracts.dll
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.xml
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\CarWash.Contracts.pdb
+C:\Users\Timur\Documents\GitHub\enterprise-development\CarWash.Contracts\obj\Release\net10.0\ref\CarWash.Contracts.dll

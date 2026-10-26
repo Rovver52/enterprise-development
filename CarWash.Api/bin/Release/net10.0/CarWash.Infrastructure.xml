@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarWash.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:CarWash.Infrastructure.Repositories.InMemoryCarRepository">
+            <summary>
+            Репозиторий автомобилей в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCarRepository.#ctor(CarWash.Domain.Data.CarWashData)">
+            <summary>
+            Репозиторий автомобилей в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCarRepository.GetByCustomerId(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCarRepository.GetCustomer(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCarRepository.Add(CarWash.Domain.Models.Car)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCarRepository.Update(CarWash.Domain.Models.Car)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCarRepository.Delete(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Infrastructure.Repositories.InMemoryCustomerRepository">
+            <summary>
+            Репозиторий клиентов и их связей в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCustomerRepository.#ctor(CarWash.Domain.Data.CarWashData,CarWash.Domain.Repositories.IOrderRepository,CarWash.Domain.Repositories.ICarRepository)">
+            <summary>
+            Репозиторий клиентов и их связей в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCustomerRepository.GetCars(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryCustomerRepository.GetTop5CustomersByVisits">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Infrastructure.Repositories.InMemoryOrderRepository">
+            <summary>
+            Репозиторий заказов и аналитических запросов в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.#ctor(CarWash.Domain.Data.CarWashData)">
+            <summary>
+            Репозиторий заказов и аналитических запросов в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetByCustomerId(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetByCarId(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetByWashServiceId(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetCustomer(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetCar(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetWashService(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetCarsCurrentlyAtWash">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryOrderRepository.GetBoxAvailableFrom(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Infrastructure.Repositories.InMemoryRepository`1">
+            <summary>
+            Базовый репозиторий сущностей в памяти
+            </summary>
+            <typeparam name="TEntity">Тип сущности</typeparam>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryRepository`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Базовый репозиторий сущностей в памяти
+            </summary>
+            <typeparam name="TEntity">Тип сущности</typeparam>
+        </member>
+        <member name="P:CarWash.Infrastructure.Repositories.InMemoryRepository`1.Items">
+            <summary>
+            Коллекция сущностей по идентификаторам
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryRepository`1.GetAll">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryRepository`1.GetById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryRepository`1.Add(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryRepository`1.Update(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryRepository`1.Delete(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Infrastructure.Repositories.InMemoryWashServiceRepository">
+            <summary>
+            Репозиторий услуг и их аналитики в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryWashServiceRepository.#ctor(CarWash.Domain.Data.CarWashData,CarWash.Domain.Repositories.IOrderRepository)">
+            <summary>
+            Репозиторий услуг и их аналитики в памяти
+            </summary>
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryWashServiceRepository.GetTop5PopularServices">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Infrastructure.Repositories.InMemoryWashServiceRepository.GetRevenuePerService">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarWash.Application</name>
+    </assembly>
+    <members>
+        <member name="T:CarWash.Application.Exceptions.EntityConflictException">
+            <summary>
+            Операция нарушает существующие связи сущностей
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Exceptions.EntityConflictException.#ctor(System.String)">
+            <summary>
+            Операция нарушает существующие связи сущностей
+            </summary>
+        </member>
+        <member name="T:CarWash.Application.Exceptions.EntityNotFoundException">
+            <summary>
+            Запрошенная сущность не найдена
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Exceptions.EntityNotFoundException.#ctor(System.String)">
+            <summary>
+            Запрошенная сущность не найдена
+            </summary>
+        </member>
+        <member name="T:CarWash.Application.Exceptions.RequestValidationException">
+            <summary>
+            Значение запроса не позволяет выполнить операцию
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Exceptions.RequestValidationException.#ctor(System.String,System.String)">
+            <summary>
+            Значение запроса не позволяет выполнить операцию
+            </summary>
+        </member>
+        <member name="P:CarWash.Application.Exceptions.RequestValidationException.Field">
+            <summary>
+            Поле запроса с ошибкой
+            </summary>
+        </member>
+        <member name="T:CarWash.Application.Mapping.CarWashMapper">
+            <summary>
+            Преобразования между доменными сущностями и контрактами API
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToResponse(CarWash.Domain.Models.Car)">
+            <summary>
+            Преобразовать автомобиль в ответ API
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToResponse(CarWash.Domain.Models.Customer)">
+            <summary>
+            Преобразовать клиента в ответ API
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToResponse(CarWash.Domain.Models.WashService)">
+            <summary>
+            Преобразовать услугу в ответ API
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToResponse(CarWash.Domain.Models.Order)">
+            <summary>
+            Преобразовать заказ в ответ API
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToDomain(CarWash.Contracts.Requests.CarRequest,CarWash.Domain.Models.Customer)">
+            <summary>
+            Создать автомобиль из запроса
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToDomain(CarWash.Contracts.Requests.CustomerRequest)">
+            <summary>
+            Создать клиента из запроса
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToDomain(CarWash.Contracts.Requests.WashServiceRequest)">
+            <summary>
+            Создать услугу из запроса
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ToDomain(CarWash.Contracts.Requests.OrderRequest,CarWash.Domain.Models.Customer,CarWash.Domain.Models.Car,CarWash.Domain.Models.WashService)">
+            <summary>
+            Создать заказ из запроса и найденных связанных сущностей
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ApplyTo(CarWash.Contracts.Requests.CustomerRequest,CarWash.Domain.Models.Customer)">
+            <summary>
+            Обновить поля клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Mapping.CarWashMapper.ApplyTo(CarWash.Contracts.Requests.WashServiceRequest,CarWash.Domain.Models.WashService)">
+            <summary>
+            Обновить поля услуги
+            </summary>
+        </member>
+        <member name="T:CarWash.Application.Services.AnalyticsService">
+            <summary>
+            Подготовка ответов аналитических запросов
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.AnalyticsService.#ctor(CarWash.Domain.Repositories.ICustomerRepository,CarWash.Domain.Repositories.IOrderRepository,CarWash.Domain.Repositories.IWashServiceRepository)">
+            <summary>
+            Подготовка ответов аналитических запросов
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.AnalyticsService.GetTopCustomers">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.AnalyticsService.GetCurrentCars">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.AnalyticsService.GetTopServices">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.AnalyticsService.GetBoxAvailability(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.AnalyticsService.GetRevenuePerService">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Application.Services.CarService">
+            <summary>
+            Операции приложения с автомобилями
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.#ctor(CarWash.Domain.Repositories.ICarRepository,CarWash.Domain.Repositories.ICustomerRepository,CarWash.Domain.Repositories.IOrderRepository)">
+            <summary>
+            Операции приложения с автомобилями
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.GetAll">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.GetById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.Create(CarWash.Contracts.Requests.CarRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.Update(System.Int32,CarWash.Contracts.Requests.CarRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.Delete(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.GetCustomer(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CarService.GetOrders(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Application.Services.CustomerService">
+            <summary>
+            Операции приложения с клиентами
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.#ctor(CarWash.Domain.Repositories.ICustomerRepository,CarWash.Domain.Repositories.IOrderRepository)">
+            <summary>
+            Операции приложения с клиентами
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.GetAll">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.GetById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.Create(CarWash.Contracts.Requests.CustomerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.Update(System.Int32,CarWash.Contracts.Requests.CustomerRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.Delete(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.GetCars(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.CustomerService.GetOrders(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Application.Services.OrderService">
+            <summary>
+            Операции приложения с заказами
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.#ctor(CarWash.Domain.Repositories.IOrderRepository,CarWash.Domain.Repositories.ICustomerRepository,CarWash.Domain.Repositories.ICarRepository,CarWash.Domain.Repositories.IWashServiceRepository)">
+            <summary>
+            Операции приложения с заказами
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.GetAll">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.GetById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.Create(CarWash.Contracts.Requests.OrderRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.Update(System.Int32,CarWash.Contracts.Requests.OrderRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.Delete(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.GetCustomer(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.GetCar(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.OrderService.GetWashService(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:CarWash.Application.Services.WashServiceService">
+            <summary>
+            Операции приложения с услугами автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.#ctor(CarWash.Domain.Repositories.IWashServiceRepository,CarWash.Domain.Repositories.IOrderRepository)">
+            <summary>
+            Операции приложения с услугами автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.GetAll">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.GetById(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.Create(CarWash.Contracts.Requests.WashServiceRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.Update(System.Int32,CarWash.Contracts.Requests.WashServiceRequest)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.Delete(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:CarWash.Application.Services.WashServiceService.GetOrders(System.Int32)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

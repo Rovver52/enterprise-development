@@ -18,4 +18,10 @@ public class CarRequest
     /// </summary>
     [Required]
     public string Brand { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Идентификатор владельца автомобиля
+    /// </summary>
+    [Range(1, int.MaxValue, ErrorMessage = "Идентификатор владельца должен быть положительным.")]
+    public required int CustomerId { get; set; }
 }

@@ -1,0 +1,470 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarWash.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:CarWash.Contracts.CarCategoryDto">
+            <summary>
+            Категория автомобиля
+            </summary>
+        </member>
+        <member name="F:CarWash.Contracts.CarCategoryDto.Sedan">
+            <summary>
+            Легковой автомобиль
+            </summary>
+        </member>
+        <member name="F:CarWash.Contracts.CarCategoryDto.Truck">
+            <summary>
+            Грузовой автомобиль
+            </summary>
+        </member>
+        <member name="F:CarWash.Contracts.CarCategoryDto.Minibus">
+            <summary>
+            Микроавтобус
+            </summary>
+        </member>
+        <member name="F:CarWash.Contracts.CarCategoryDto.SUV">
+            <summary>
+            Внедорожник
+            </summary>
+        </member>
+        <member name="F:CarWash.Contracts.CarCategoryDto.Motorcycle">
+            <summary>
+            Мотоцикл
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Requests.CarRequest">
+            <summary>
+            Данные для создания или изменения автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.CarRequest.LicensePlate">
+            <summary>
+            Государственный номер
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.CarRequest.Brand">
+            <summary>
+            Марка автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.CarRequest.CustomerId">
+            <summary>
+            Идентификатор владельца автомобиля
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Requests.CustomerRequest">
+            <summary>
+            Данные для создания или изменения клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.CustomerRequest.FullName">
+            <summary>
+            ФИО клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.CustomerRequest.Phone">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Requests.OrderRequest">
+            <summary>
+            Данные для создания или изменения заказа
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.OrderRequest.CustomerId">
+            <summary>
+            Идентификатор клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.OrderRequest.CarId">
+            <summary>
+            Идентификатор автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.OrderRequest.WashServiceId">
+            <summary>
+            Идентификатор услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.OrderRequest.StartTime">
+            <summary>
+            Дата и время начала обслуживания
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.OrderRequest.BoxNumber">
+            <summary>
+            Номер бокса
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Requests.WashServiceRequest">
+            <summary>
+            Данные для создания или изменения услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.WashServiceRequest.Name">
+            <summary>
+            Название услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.WashServiceRequest.Category">
+            <summary>
+            Категория автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.WashServiceRequest.Cost">
+            <summary>
+            Стоимость услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Requests.WashServiceRequest.DurationMinutes">
+            <summary>
+            Продолжительность услуги в минутах
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.BoxAvailabilityResponse">
+            <summary>
+            Время освобождения бокса
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.BoxAvailabilityResponse.BoxNumber">
+            <summary>
+            Номер бокса
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.BoxAvailabilityResponse.AvailableFrom">
+            <summary>
+            Время, с которого бокс свободен
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.CarResponse">
+            <summary>
+            Сведения об автомобиле
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CarResponse.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CarResponse.LicensePlate">
+            <summary>
+            Государственный номер
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CarResponse.Brand">
+            <summary>
+            Марка автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CarResponse.CustomerId">
+            <summary>
+            Идентификатор владельца автомобиля
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.CustomerResponse">
+            <summary>
+            Сведения о клиенте
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CustomerResponse.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CustomerResponse.FullName">
+            <summary>
+            ФИО клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.CustomerResponse.Phone">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.ErrorResponse">
+            <summary>
+            Единый формат ошибки API
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ErrorResponse.Status">
+            <summary>
+            HTTP-код ошибки
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ErrorResponse.Message">
+            <summary>
+            Сообщение для пользователя
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ErrorResponse.TraceId">
+            <summary>
+            Идентификатор запроса для поиска в журнале
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ErrorResponse.Errors">
+            <summary>
+            Ошибки отдельных полей запроса
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.OrderResponse">
+            <summary>
+            Сведения о заказе без вложенных сущностей
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.CustomerId">
+            <summary>
+            Идентификатор клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.CarId">
+            <summary>
+            Идентификатор автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.WashServiceId">
+            <summary>
+            Идентификатор услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.StartTime">
+            <summary>
+            Начало обслуживания
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.EndTime">
+            <summary>
+            Окончание обслуживания
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.BoxNumber">
+            <summary>
+            Номер бокса
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.OrderResponse.IsInProgress">
+            <summary>
+            Автомобиль находится на мойке
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.PopularServiceResponse">
+            <summary>
+            Количество заказов услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.PopularServiceResponse.WashServiceId">
+            <summary>
+            Идентификатор услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.PopularServiceResponse.Name">
+            <summary>
+            Название услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.PopularServiceResponse.OrderCount">
+            <summary>
+            Количество заказов
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.ServiceRevenueResponse">
+            <summary>
+            Выручка по услуге
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ServiceRevenueResponse.WashServiceId">
+            <summary>
+            Идентификатор услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ServiceRevenueResponse.Name">
+            <summary>
+            Название услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.ServiceRevenueResponse.Revenue">
+            <summary>
+            Суммарная выручка
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.TopCustomerResponse">
+            <summary>
+            Количество посещений клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.TopCustomerResponse.CustomerId">
+            <summary>
+            Идентификатор клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.TopCustomerResponse.FullName">
+            <summary>
+            ФИО клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.TopCustomerResponse.VisitCount">
+            <summary>
+            Количество посещений
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Responses.WashServiceResponse">
+            <summary>
+            Сведения об услуге
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.WashServiceResponse.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.WashServiceResponse.Name">
+            <summary>
+            Название услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.WashServiceResponse.Category">
+            <summary>
+            Категория автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.WashServiceResponse.Cost">
+            <summary>
+            Стоимость услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Contracts.Responses.WashServiceResponse.DurationMinutes">
+            <summary>
+            Продолжительность услуги в минутах
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Services.IAnalyticsService">
+            <summary>
+            Аналитические запросы автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IAnalyticsService.GetTopCustomers">
+            <summary>
+            Получить пять клиентов с наибольшим количеством посещений
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IAnalyticsService.GetCurrentCars">
+            <summary>
+            Получить автомобили, находящиеся сейчас на мойке
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IAnalyticsService.GetTopServices">
+            <summary>
+            Получить пять наиболее популярных услуг
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IAnalyticsService.GetBoxAvailability(System.Int32)">
+            <summary>
+            Получить время освобождения бокса
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IAnalyticsService.GetRevenuePerService">
+            <summary>
+            Получить выручку по каждой услуге
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Services.ICarService">
+            <summary>
+            Операции с автомобилями
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICarService.GetCustomer(System.Int32)">
+            <summary>
+            Получить владельца автомобиля
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICarService.GetOrders(System.Int32)">
+            <summary>
+            Получить заказы автомобиля
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Services.ICrudService`2">
+            <summary>
+            Базовые операции приложения с сущностью
+            </summary>
+            <typeparam name="TRequest">Данные для создания и изменения</typeparam>
+            <typeparam name="TResponse">Представление сущности</typeparam>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICrudService`2.GetAll">
+            <summary>
+            Получить список сущностей
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICrudService`2.GetById(System.Int32)">
+            <summary>
+            Получить сущность по идентификатору
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICrudService`2.Create(`0)">
+            <summary>
+            Создать сущность
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICrudService`2.Update(System.Int32,`0)">
+            <summary>
+            Изменить сущность
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICrudService`2.Delete(System.Int32)">
+            <summary>
+            Удалить сущность
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Services.ICustomerService">
+            <summary>
+            Операции с клиентами
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICustomerService.GetCars(System.Int32)">
+            <summary>
+            Получить автомобили клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.ICustomerService.GetOrders(System.Int32)">
+            <summary>
+            Получить заказы клиента
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Services.IOrderService">
+            <summary>
+            Операции с заказами
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IOrderService.GetCustomer(System.Int32)">
+            <summary>
+            Получить клиента заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IOrderService.GetCar(System.Int32)">
+            <summary>
+            Получить автомобиль заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IOrderService.GetWashService(System.Int32)">
+            <summary>
+            Получить услугу заказа
+            </summary>
+        </member>
+        <member name="T:CarWash.Contracts.Services.IWashServiceService">
+            <summary>
+            Операции с услугами автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Contracts.Services.IWashServiceService.GetOrders(System.Int32)">
+            <summary>
+            Получить заказы с услугой
+            </summary>
+        </member>
+    </members>
+</doc>

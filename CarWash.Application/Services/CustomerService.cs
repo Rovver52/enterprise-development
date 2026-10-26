@@ -1,6 +1,8 @@
+using CarWash.Application.Exceptions;
 using CarWash.Application.Mapping;
 using CarWash.Contracts.Requests;
 using CarWash.Contracts.Responses;
+using CarWash.Contracts.Services;
 using CarWash.Domain.Repositories;
 
 namespace CarWash.Application.Services;
@@ -8,23 +10,17 @@ namespace CarWash.Application.Services;
 /// <summary>
 /// Операции приложения с клиентами
 /// </summary>
-public class CustomerService(ICustomerRepository customers, ICarRepository cars, IOrderRepository orders)
+public class CustomerService(ICustomerRepository customers, IOrderRepository orders) : ICustomerService
 {
-    /// <summary>
-    /// Получить всех клиентов
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<CustomerResponse> GetAll() =>
         customers.GetAll().Select(customer => customer.ToResponse()).ToList();
 
-    /// <summary>
-    /// Получить клиента
-    /// </summary>
+    /// <inheritdoc />
     public CustomerResponse GetById(int id) =>
-        (customers.GetById(id) ?? throw new KeyNotFoundException("Клиент не найден.")).ToResponse();
+        (customers.GetById(id) ?? throw new EntityNotFoundException("Клиент не найден.")).ToResponse();
 
-    /// <summary>
-    /// Создать клиента
-    /// </summary>
+    /// <inheritdoc />
     public CustomerResponse Create(CustomerRequest request)
     {
         var customer = request.ToDomain();
@@ -32,63 +28,36 @@ public class CustomerService(ICustomerRepository customers, ICarRepository cars,
         return customer.ToResponse();
     }
 
-    /// <summary>
-    /// Изменить собственные поля клиента
-    /// </summary>
+    /// <inheritdoc />
     public void Update(int id, CustomerRequest request)
     {
-        var customer = customers.GetById(id) ?? throw new KeyNotFoundException("Клиент не найден.");
+        var customer = customers.GetById(id) ?? throw new EntityNotFoundException("Клиент не найден.");
         request.ApplyTo(customer);
         customers.Update(customer);
     }
 
-    /// <summary>
-    /// Удалить клиента, который не используется в заказах
-    /// </summary>
+    /// <inheritdoc />
     public void Delete(int id)
     {
         _ = GetById(id);
         if (orders.GetByCustomerId(id).Count != 0)
-            throw new InvalidOperationException("Клиент используется в заказах.");
+            throw new EntityConflictException("Клиент используется в заказах.");
+        if (customers.GetCars(id).Count != 0)
+            throw new EntityConflictException("У клиента есть автомобили. Сначала смените их владельца или удалите автомобили.");
         customers.Delete(id);
     }
 
-    /// <summary>
-    /// Получить автомобили клиента
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<CarResponse> GetCars(int id)
     {
         _ = GetById(id);
         return customers.GetCars(id).Select(car => car.ToResponse()).ToList();
     }
 
-    /// <summary>
-    /// Получить заказы клиента
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<OrderResponse> GetOrders(int id)
     {
         _ = GetById(id);
         return orders.GetByCustomerId(id).Select(order => order.ToResponse()).ToList();
-    }
-
-    /// <summary>
-    /// Связать клиента с существующим автомобилем
-    /// </summary>
-    public void AddCar(int id, int carId)
-    {
-        _ = GetById(id);
-        var car = cars.GetById(carId) ?? throw new KeyNotFoundException("Автомобиль не найден.");
-        customers.AddCar(id, car);
-    }
-
-    /// <summary>
-    /// Удалить связь клиента с автомобилем
-    /// </summary>
-    public void RemoveCar(int id, int carId)
-    {
-        _ = GetById(id);
-        if (cars.GetById(carId) is null)
-            throw new KeyNotFoundException("Автомобиль не найден.");
-        customers.RemoveCar(id, carId);
     }
 }

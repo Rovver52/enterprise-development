@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarWash.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:CarWash.Domain.Data.CarWashData">
+            <summary>
+            Общие начальные данные сервера и тестов
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Data.CarWashData.Cars">
+            <summary>
+            Автомобили
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Data.CarWashData.Customers">
+            <summary>
+            Клиенты
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Data.CarWashData.WashServices">
+            <summary>
+            Услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Data.CarWashData.Orders">
+            <summary>
+            Заказы
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Data.CarWashData.#ctor">
+            <summary>
+            Создать фиксированный набор данных с одним текущим заказом
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Models.Car">
+            <summary>
+            Автомобиль клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Car.Id">
+            <summary>
+            Идентификатор автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Car.LicensePlate">
+            <summary>
+            Государственный номер
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Car.Brand">
+            <summary>
+            Марка автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Car.Customer">
+            <summary>
+            Владелец автомобиля
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Models.CarCategory">
+            <summary>
+            Категория автомобиля
+            </summary>
+        </member>
+        <member name="F:CarWash.Domain.Models.CarCategory.Sedan">
+            <summary>
+            Легковой автомобиль
+            </summary>
+        </member>
+        <member name="F:CarWash.Domain.Models.CarCategory.Truck">
+            <summary>
+            Грузовой автомобиль
+            </summary>
+        </member>
+        <member name="F:CarWash.Domain.Models.CarCategory.Minibus">
+            <summary>
+            Микроавтобус
+            </summary>
+        </member>
+        <member name="F:CarWash.Domain.Models.CarCategory.SUV">
+            <summary>
+            Внедорожник
+            </summary>
+        </member>
+        <member name="F:CarWash.Domain.Models.CarCategory.Motorcycle">
+            <summary>
+            Мотоцикл
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Models.Customer">
+            <summary>
+            Клиент автомойки
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Customer.Id">
+            <summary>
+            Идентификатор клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Customer.FullName">
+            <summary>
+            ФИО клиента
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Customer.Phone">
+            <summary>
+            Номер телефона
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Customer.Cars">
+            <summary>
+            Автомобили клиента
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Models.IEntity">
+            <summary>
+            Сущность с целочисленным идентификатором
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.IEntity.Id">
+            <summary>
+            Идентификатор сущности
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Models.Order">
+            <summary>
+            Заказ на обслуживание автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.Id">
+            <summary>
+            Идентификатор заказа
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.Customer">
+            <summary>
+            Клиент
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.WashService">
+            <summary>
+            Услуга
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.Car">
+            <summary>
+            Автомобиль
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.StartTime">
+            <summary>
+            Дата и время начала обслуживания
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.BoxNumber">
+            <summary>
+            Номер бокса
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.EndTime">
+            <summary>
+            Дата и время окончания обслуживания
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.Order.IsInProgress">
+            <summary>
+            Автомобиль находится на мойке
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Models.WashService">
+            <summary>
+            Услуга автомойки
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.WashService.Id">
+            <summary>
+            Идентификатор услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.WashService.Name">
+            <summary>
+            Название услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.WashService.Category">
+            <summary>
+            Категория автомобиля
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.WashService.Cost">
+            <summary>
+            Стоимость услуги
+            </summary>
+        </member>
+        <member name="P:CarWash.Domain.Models.WashService.DurationMinutes">
+            <summary>
+            Продолжительность услуги в минутах
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Repositories.ICarRepository">
+            <summary>
+            Репозиторий автомобилей
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.ICarRepository.GetByCustomerId(System.Int32)">
+            <summary>
+            Получить автомобили владельца
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.ICarRepository.GetCustomer(System.Int32)">
+            <summary>
+            Получить владельца автомобиля
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Repositories.ICustomerRepository">
+            <summary>
+            Репозиторий клиентов
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.ICustomerRepository.GetCars(System.Int32)">
+            <summary>
+            Получить автомобили клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.ICustomerRepository.GetTop5CustomersByVisits">
+            <summary>
+            Получить пять клиентов с наибольшим количеством посещений
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Repositories.IOrderRepository">
+            <summary>
+            Репозиторий заказов
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetByCustomerId(System.Int32)">
+            <summary>
+            Получить заказы клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetByCarId(System.Int32)">
+            <summary>
+            Получить заказы автомобиля
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetByWashServiceId(System.Int32)">
+            <summary>
+            Получить заказы с указанной услугой
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetCustomer(System.Int32)">
+            <summary>
+            Получить клиента заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetCar(System.Int32)">
+            <summary>
+            Получить автомобиль заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetWashService(System.Int32)">
+            <summary>
+            Получить услугу заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetCarsCurrentlyAtWash">
+            <summary>
+            Получить автомобили, которые сейчас находятся на мойке
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IOrderRepository.GetBoxAvailableFrom(System.Int32)">
+            <summary>
+            Определить время освобождения бокса
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Repositories.IRepository`1">
+            <summary>
+            Базовые операции с коллекцией сущностей
+            </summary>
+            <typeparam name="TEntity">Тип сущности</typeparam>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IRepository`1.GetAll">
+            <summary>
+            Получить все сущности
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IRepository`1.GetById(System.Int32)">
+            <summary>
+            Получить сущность по идентификатору
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IRepository`1.Add(`0)">
+            <summary>
+            Добавить сущность и назначить свободный идентификатор
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IRepository`1.Update(`0)">
+            <summary>
+            Обновить существующую сущность
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IRepository`1.Delete(System.Int32)">
+            <summary>
+            Удалить сущность
+            </summary>
+        </member>
+        <member name="T:CarWash.Domain.Repositories.IWashServiceRepository">
+            <summary>
+            Репозиторий услуг автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IWashServiceRepository.GetTop5PopularServices">
+            <summary>
+            Получить пять наиболее популярных услуг
+            </summary>
+        </member>
+        <member name="M:CarWash.Domain.Repositories.IWashServiceRepository.GetRevenuePerService">
+            <summary>
+            Получить общую выручку по каждой услуге
+            </summary>
+        </member>
+    </members>
+</doc>

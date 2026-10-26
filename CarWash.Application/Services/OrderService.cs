@@ -1,6 +1,8 @@
+using CarWash.Application.Exceptions;
 using CarWash.Application.Mapping;
 using CarWash.Contracts.Requests;
 using CarWash.Contracts.Responses;
+using CarWash.Contracts.Services;
 using CarWash.Domain.Models;
 using CarWash.Domain.Repositories;
 
@@ -13,22 +15,16 @@ public class OrderService(
     IOrderRepository orders,
     ICustomerRepository customers,
     ICarRepository cars,
-    IWashServiceRepository services)
+    IWashServiceRepository services) : IOrderService
 {
-    /// <summary>
-    /// Получить все заказы
-    /// </summary>
+    /// <inheritdoc />
     public IReadOnlyList<OrderResponse> GetAll() => orders.GetAll().Select(order => order.ToResponse()).ToList();
 
-    /// <summary>
-    /// Получить заказ
-    /// </summary>
+    /// <inheritdoc />
     public OrderResponse GetById(int id) =>
-        (orders.GetById(id) ?? throw new KeyNotFoundException("Заказ не найден.")).ToResponse();
+        (orders.GetById(id) ?? throw new EntityNotFoundException("Заказ не найден.")).ToResponse();
 
-    /// <summary>
-    /// Создать заказ
-    /// </summary>
+    /// <inheritdoc />
     public OrderResponse Create(OrderRequest request)
     {
         var order = CreateOrder(request);
@@ -36,9 +32,7 @@ public class OrderService(
         return order.ToResponse();
     }
 
-    /// <summary>
-    /// Изменить заказ
-    /// </summary>
+    /// <inheritdoc />
     public void Update(int id, OrderRequest request)
     {
         _ = GetById(id);
@@ -47,43 +41,43 @@ public class OrderService(
         orders.Update(order);
     }
 
-    /// <summary>
-    /// Удалить заказ
-    /// </summary>
+    /// <inheritdoc />
     public void Delete(int id)
     {
         _ = GetById(id);
         orders.Delete(id);
     }
 
-    /// <summary>
-    /// Получить клиента заказа
-    /// </summary>
+    /// <inheritdoc />
     public CustomerResponse GetCustomer(int id) =>
-        (orders.GetCustomer(id) ?? throw new KeyNotFoundException("Заказ не найден.")).ToResponse();
+        (orders.GetCustomer(id) ?? throw new EntityNotFoundException("Заказ не найден.")).ToResponse();
 
-    /// <summary>
-    /// Получить автомобиль заказа
-    /// </summary>
+    /// <inheritdoc />
     public CarResponse GetCar(int id) =>
-        (orders.GetCar(id) ?? throw new KeyNotFoundException("Заказ не найден.")).ToResponse();
+        (orders.GetCar(id) ?? throw new EntityNotFoundException("Заказ не найден.")).ToResponse();
 
-    /// <summary>
-    /// Получить услугу заказа
-    /// </summary>
+    /// <inheritdoc />
     public WashServiceResponse GetWashService(int id) =>
-        (orders.GetWashService(id) ?? throw new KeyNotFoundException("Заказ не найден.")).ToResponse();
+        (orders.GetWashService(id) ?? throw new EntityNotFoundException("Заказ не найден.")).ToResponse();
 
     private Order CreateOrder(OrderRequest request)
     {
         var customer = customers.GetById(request.CustomerId)
-            ?? throw new ArgumentException("Клиент не найден.", nameof(request.CustomerId));
+            ?? throw new EntityNotFoundException("Клиент не найден.");
         var car = cars.GetById(request.CarId)
-            ?? throw new ArgumentException("Автомобиль не найден.", nameof(request.CarId));
+            ?? throw new EntityNotFoundException("Автомобиль не найден.");
         var service = services.GetById(request.WashServiceId)
-            ?? throw new ArgumentException("Услуга не найдена.", nameof(request.WashServiceId));
+            ?? throw new EntityNotFoundException("Услуга не найдена.");
         var order = request.ToDomain(customer, car, service);
-        _ = order.EndTime;
+        try
+        {
+            _ = order.EndTime;
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            throw new RequestValidationException(nameof(request.StartTime),
+                "Время окончания заказа выходит за допустимые границы даты.");
+        }
         return order;
     }
 }

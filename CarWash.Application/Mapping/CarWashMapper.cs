@@ -15,7 +15,7 @@ public static class CarWashMapper
     /// </summary>
     public static CarResponse ToResponse(this Car car) => new()
     {
-        Id = car.Id, LicensePlate = car.LicensePlate, Brand = car.Brand
+        Id = car.Id, LicensePlate = car.LicensePlate, Brand = car.Brand, CustomerId = car.Customer.Id
     };
 
     /// <summary>
@@ -56,9 +56,9 @@ public static class CarWashMapper
     /// <summary>
     /// Создать автомобиль из запроса
     /// </summary>
-    public static Car ToDomain(this CarRequest request) => new()
+    public static Car ToDomain(this CarRequest request, Customer customer) => new()
     {
-        Id = 0, LicensePlate = request.LicensePlate, Brand = request.Brand
+        Id = 0, LicensePlate = request.LicensePlate, Brand = request.Brand, Customer = customer
     };
 
     /// <summary>
@@ -95,15 +95,6 @@ public static class CarWashMapper
             : request.StartTime,
         BoxNumber = request.BoxNumber
     };
-
-    /// <summary>
-    /// Обновить поля автомобиля
-    /// </summary>
-    public static void ApplyTo(this CarRequest request, Car car)
-    {
-        car.LicensePlate = request.LicensePlate;
-        car.Brand = request.Brand;
-    }
 
     /// <summary>
     /// Обновить поля клиента

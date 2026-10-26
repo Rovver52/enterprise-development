@@ -35,7 +35,7 @@ public class CarWashFixture
     public CarWashFixture()
     {
         OrderRepository = new InMemoryOrderRepository(Data);
-        CustomerRepository = new InMemoryCustomerRepository(Data, OrderRepository);
+        CustomerRepository = new InMemoryCustomerRepository(Data, OrderRepository, new InMemoryCarRepository(Data));
         WashServiceRepository = new InMemoryWashServiceRepository(Data, OrderRepository);
     }
 }

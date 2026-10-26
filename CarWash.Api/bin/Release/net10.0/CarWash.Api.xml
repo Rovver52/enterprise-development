@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarWash.Api</name>
+    </assembly>
+    <members>
+        <member name="T:CarWash.Api.Controllers.AnalyticsController">
+            <summary>
+            Аналитические запросы автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.AnalyticsController.#ctor(CarWash.Contracts.Services.IAnalyticsService,Microsoft.Extensions.Logging.ILogger{CarWash.Api.Controllers.AnalyticsController})">
+            <summary>
+            Аналитические запросы автомойки
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.AnalyticsController.GetTopCustomers">
+            <summary>
+            Получить пять клиентов с наибольшим количеством посещений
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.AnalyticsController.GetCurrentCars">
+            <summary>
+            Получить автомобили, находящиеся сейчас на мойке
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.AnalyticsController.GetTopServices">
+            <summary>
+            Получить пять наиболее популярных услуг
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.AnalyticsController.GetBoxAvailability(System.Int32)">
+            <summary>
+            Получить время освобождения бокса
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.AnalyticsController.GetRevenuePerService">
+            <summary>
+            Получить выручку по каждой услуге
+            </summary>
+        </member>
+        <member name="T:CarWash.Api.Controllers.CarsController">
+            <summary>
+            Операции с коллекцией автомобилей
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.#ctor(CarWash.Contracts.Services.ICarService,Microsoft.Extensions.Logging.ILogger{CarWash.Api.Controllers.CarsController})">
+            <summary>
+            Операции с коллекцией автомобилей
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.GetAll">
+            <summary>
+            Получить список автомобилей
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.GetById(System.Int32)">
+            <summary>
+            Получить автомобиль по идентификатору
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.Create(CarWash.Contracts.Requests.CarRequest)">
+            <summary>
+            Создать автомобиль
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.Update(System.Int32,CarWash.Contracts.Requests.CarRequest)">
+            <summary>
+            Изменить автомобиль
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.Delete(System.Int32)">
+            <summary>
+            Удалить автомобиль
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.GetCustomer(System.Int32)">
+            <summary>
+            Получить владельца автомобиля
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CarsController.GetOrders(System.Int32)">
+            <summary>
+            Получить заказы автомобиля
+            </summary>
+        </member>
+        <member name="T:CarWash.Api.Controllers.CustomersController">
+            <summary>
+            Операции с коллекцией клиентов
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.#ctor(CarWash.Contracts.Services.ICustomerService,Microsoft.Extensions.Logging.ILogger{CarWash.Api.Controllers.CustomersController})">
+            <summary>
+            Операции с коллекцией клиентов
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.GetAll">
+            <summary>
+            Получить список клиентов
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.GetById(System.Int32)">
+            <summary>
+            Получить клиента по идентификатору
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.Create(CarWash.Contracts.Requests.CustomerRequest)">
+            <summary>
+            Создать клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.Update(System.Int32,CarWash.Contracts.Requests.CustomerRequest)">
+            <summary>
+            Изменить клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.Delete(System.Int32)">
+            <summary>
+            Удалить клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.GetCars(System.Int32)">
+            <summary>
+            Получить автомобили клиента
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.CustomersController.GetOrders(System.Int32)">
+            <summary>
+            Получить заказы клиента
+            </summary>
+        </member>
+        <member name="T:CarWash.Api.Controllers.OrdersController">
+            <summary>
+            Операции с коллекцией заказов
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.#ctor(CarWash.Contracts.Services.IOrderService,Microsoft.Extensions.Logging.ILogger{CarWash.Api.Controllers.OrdersController})">
+            <summary>
+            Операции с коллекцией заказов
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.GetAll">
+            <summary>
+            Получить список заказов
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.GetById(System.Int32)">
+            <summary>
+            Получить заказ по идентификатору
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.Create(CarWash.Contracts.Requests.OrderRequest)">
+            <summary>
+            Создать заказ
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.Update(System.Int32,CarWash.Contracts.Requests.OrderRequest)">
+            <summary>
+            Изменить заказ
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.Delete(System.Int32)">
+            <summary>
+            Удалить заказ
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.GetCustomer(System.Int32)">
+            <summary>
+            Получить клиента заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.GetCar(System.Int32)">
+            <summary>
+            Получить автомобиль заказа
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.OrdersController.GetWashService(System.Int32)">
+            <summary>
+            Получить услугу заказа
+            </summary>
+        </member>
+        <member name="T:CarWash.Api.Controllers.WashServicesController">
+            <summary>
+            Операции с коллекцией услуг
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.#ctor(CarWash.Contracts.Services.IWashServiceService,Microsoft.Extensions.Logging.ILogger{CarWash.Api.Controllers.WashServicesController})">
+            <summary>
+            Операции с коллекцией услуг
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.GetAll">
+            <summary>
+            Получить список услуг
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.GetById(System.Int32)">
+            <summary>
+            Получить услугу по идентификатору
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.Create(CarWash.Contracts.Requests.WashServiceRequest)">
+            <summary>
+            Создать услугу
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.Update(System.Int32,CarWash.Contracts.Requests.WashServiceRequest)">
+            <summary>
+            Изменить услугу
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.Delete(System.Int32)">
+            <summary>
+            Удалить услугу
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Controllers.WashServicesController.GetOrders(System.Int32)">
+            <summary>
+            Получить заказы с услугой
+            </summary>
+        </member>
+        <member name="T:CarWash.Api.Middleware.ExceptionHandlingMiddleware">
+            <summary>
+            Преобразование ошибок приложения в HTTP-ответы и запись исключений в журнал
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Middleware.ExceptionHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{CarWash.Api.Middleware.ExceptionHandlingMiddleware})">
+            <summary>
+            Преобразование ошибок приложения в HTTP-ответы и запись исключений в журнал
+            </summary>
+        </member>
+        <member name="M:CarWash.Api.Middleware.ExceptionHandlingMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Обработать запрос и перехватить исключения следующих компонентов
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>

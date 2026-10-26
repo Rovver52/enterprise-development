@@ -19,4 +19,9 @@ public class CarResponse
     /// Марка автомобиля
     /// </summary>
     public required string Brand { get; set; }
+
+    /// <summary>
+    /// Идентификатор владельца автомобиля
+    /// </summary>
+    public required int CustomerId { get; set; }
 }

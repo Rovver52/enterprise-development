@@ -1,0 +1,15 @@
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\bin\Debug\net10.0\CarWash.Infrastructure.deps.json
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\bin\Debug\net10.0\CarWash.Infrastructure.dll
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\bin\Debug\net10.0\CarWash.Infrastructure.pdb
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\bin\Debug\net10.0\CarWash.Domain.dll
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\bin\Debug\net10.0\CarWash.Domain.pdb
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.AssemblyInfo.cs
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash..6667D4A9.Up2Date
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.dll
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\refint\CarWash.Infrastructure.dll
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\CarWash.Infrastructure.pdb
+C:\Users\Timur\CarWashLab2\CarWashLab2\CarWash.Infrastructure\obj\Debug\net10.0\ref\CarWash.Infrastructure.dll

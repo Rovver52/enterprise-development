@@ -32,25 +32,28 @@ public class CarWashData
     /// </summary>
     public CarWashData()
     {
-        Cars =
-        [
-            new() { Id = 1, LicensePlate = "A001AA", Brand = "Toyota" },
-            new() { Id = 2, LicensePlate = "A002AA", Brand = "Kia" },
-            new() { Id = 3, LicensePlate = "A003AA", Brand = "Lada" },
-            new() { Id = 4, LicensePlate = "A004AA", Brand = "BMW" },
-            new() { Id = 5, LicensePlate = "A005AA", Brand = "Audi" },
-            new() { Id = 6, LicensePlate = "A006AA", Brand = "Ford" }
-        ];
-
         Customers =
         [
-            new() { Id = 1, FullName = "Иванов Иван Иванович", Phone = "79000000001", Cars = [Cars[0]] },
-            new() { Id = 2, FullName = "Петров Петр Петрович", Phone = "79000000002", Cars = [Cars[1]] },
-            new() { Id = 3, FullName = "Сидоров Алексей Олегович", Phone = "79000000003", Cars = [Cars[2]] },
-            new() { Id = 4, FullName = "Смирнов Максим Игоревич", Phone = "79000000004", Cars = [Cars[3]] },
-            new() { Id = 5, FullName = "Кузнецов Андрей Сергеевич", Phone = "79000000005", Cars = [Cars[4]] },
-            new() { Id = 6, FullName = "Попов Дмитрий Андреевич", Phone = "79000000006", Cars = [Cars[5]] }
+            new() { Id = 1, FullName = "Иванов Иван Иванович", Phone = "79000000001" },
+            new() { Id = 2, FullName = "Петров Петр Петрович", Phone = "79000000002" },
+            new() { Id = 3, FullName = "Сидоров Алексей Олегович", Phone = "79000000003" },
+            new() { Id = 4, FullName = "Смирнов Максим Игоревич", Phone = "79000000004" },
+            new() { Id = 5, FullName = "Кузнецов Андрей Сергеевич", Phone = "79000000005" },
+            new() { Id = 6, FullName = "Попов Дмитрий Андреевич", Phone = "79000000006" }
         ];
+
+        Cars =
+        [
+            new() { Id = 1, LicensePlate = "A001AA", Brand = "Toyota", Customer = Customers[0] },
+            new() { Id = 2, LicensePlate = "A002AA", Brand = "Kia", Customer = Customers[1] },
+            new() { Id = 3, LicensePlate = "A003AA", Brand = "Lada", Customer = Customers[2] },
+            new() { Id = 4, LicensePlate = "A004AA", Brand = "BMW", Customer = Customers[3] },
+            new() { Id = 5, LicensePlate = "A005AA", Brand = "Audi", Customer = Customers[4] },
+            new() { Id = 6, LicensePlate = "A006AA", Brand = "Ford", Customer = Customers[5] }
+        ];
+
+        foreach (var car in Cars)
+            car.Customer.Cars.Add(car);
 
         WashServices =
         [

@@ -26,7 +26,7 @@ public abstract class InMemoryRepository<TEntity>(IEnumerable<TEntity> entities)
         Items.GetValueOrDefault(id);
 
     /// <inheritdoc />
-    public void Add(TEntity entity)
+    public virtual void Add(TEntity entity)
     {
         var id = Items.Count + 1;
         while (true)
@@ -39,13 +39,13 @@ public abstract class InMemoryRepository<TEntity>(IEnumerable<TEntity> entities)
     }
 
     /// <inheritdoc />
-    public void Update(TEntity entity)
+    public virtual void Update(TEntity entity)
     {
         if (Items.TryGetValue(entity.Id, out var current))
             Items.TryUpdate(entity.Id, entity, current);
     }
 
     /// <inheritdoc />
-    public void Delete(int id) =>
+    public virtual void Delete(int id) =>
         Items.TryRemove(id, out _);
 }
